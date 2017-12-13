@@ -1,0 +1,27 @@
+    
+<div *ngFor="let order of orders; let i = index" [style.opacity]="order.processed ? 0.4 : 1">
+    <h2>Zamówienie #{{i + 1}}</h2>
+    <div class="btn-group" data-toggle="buttons">
+        <label class="btn btn-primary" (click)="order.processed && setProcessed(order, false)" [class.active]="!order.processed">
+            <input type="radio" name="options" id="option1" checked> W trakcie
+        </label>
+        <label class="btn btn-primary" (click)="!orderProcessed && setProcessed(order, true)" [class.active]="order.processed">
+            <input type="radio" name="options" id="option2"> Zakończone
+        </label>
+    </div><br />
+    <label>Wysyłka na adres: {{ order.postAddress }}.</label>
+    <div class="row">
+        <div class="col-sm-6 col-md-6 col-md-offset-3 col-sm-offset-3">
+            <ul class="list-group">
+                <li class="list-group-item" *ngFor="let product of order.products">
+                    <span class="badge">{{ product.amount * product.product.price }}zł</span>
+                    <strong>{{ product.product.title }}</strong>
+                    <span class="label label-success">{{ product.amount  }}</span>
+                </li>
+            </ul>
+        </div>
+    </div>    
+</div>
+
+
+    

@@ -1,0 +1,20 @@
+    
+<div *ngFor="let order of orders; let i = index" [style.opacity]="order.processed ? 0.4 : 1">
+    <h2>Zamówienie #{{i + 1}}</h2>
+    <label>Wysyłka na adres: {{ order.postAddress }}.</label>
+    <span>Status: {{ order.processed ? 'Zakończone' : 'W trakcie' }} </span>
+    <div class="row">
+        <div class="col-sm-6 col-md-6 col-md-offset-3 col-sm-offset-3">
+            <ul class="list-group">
+                <li class="list-group-item" *ngFor="let product of order.products">
+                    <span class="badge">{{ product.amount }}</span>
+                    <strong>{{ product.product.title }}</strong>
+                    <span class="label label-success">{{ product.amount * product.product.price }}zł</span>
+                </li>
+            </ul>
+        </div>
+    </div>    
+</div>
+
+
+    

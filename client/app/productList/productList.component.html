@@ -1,0 +1,49 @@
+﻿<nav aria-label="Page navigation">
+    <ul class="pagination">
+      <li>
+        <a (click)="productService.previousPage()" aria-label="Previous">
+          <span aria-hidden="true">&laquo;</span>
+        </a>
+      </li>
+      <li>Page {{productService.currentPage + 1}} of {{productService.allPages + 1}}</li>
+      <li>
+        <a (click)="nextPage()" aria-label="Next">
+          <span aria-hidden="true">&raquo;</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+
+<div class="row" *ngFor="let product of productService.visibleProducts">
+
+  <div class="col-md-12">
+
+    <div class="thumbnail">
+      <div class="row">
+          <div class="col-md-3">
+              <img src="{{ product.imagePath }}" alt="kurtka" class="img-responsive">
+          </div>
+          <div class="col-md-9">
+              <div class="caption">
+                <h3>{{ product.title }}</h3>
+                <p class="description">{{ product.description }} zł</p>
+                <div class="clearfix">
+                  <div class="price pull-left">{{ product.price }}</div>
+                  <ng-container *ngIf="authenticationService.isLogged()">
+                    <a *ngIf="!cartService.productInCart(product._id)" (click)="addToCart(product._id)" class="btn btn-success pull-right" role="button">Dodaj do koszyka</a>
+                    <ng-container *ngIf="cartService.productInCart(product._id)" >
+                      <span>Sztuk: {{cartService.productInCart(product._id)}}</span>
+                      <div class="btn-group" role="group" >
+                          <button (click)="removeFromCart(product._id)" type="button" class="btn btn-default"><a >-</a></button>
+                          <button (click)="addToCart(product._id)" type="button" class="btn btn-default"><a >+</a></button>
+                      </div>
+                    </ng-container>
+                 </ng-container>
+                </div>   
+              </div> 
+          </div>
+      </div>
+    </div>
+  </div>
+
+</div>

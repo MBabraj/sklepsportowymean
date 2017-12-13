@@ -1,0 +1,5 @@
+﻿{
+    "connectionString": "mongodb://mb:jpkwm@ds123136.mlab.com:23136/sklepsportowy",
+    "apiUrl": "http://localhost:4000",
+    "secret": "mysupersecret"
+}
